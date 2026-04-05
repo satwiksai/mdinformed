@@ -24,8 +24,6 @@
   --green-mid: #256B47;
   --green-light: #E8F2EC;
   --green-pale: #F0F7F2;
-  --gold: #A67C3A;
-  --gold-light: #FAF3E6;
   --border: #DDD8CE;
   --border-light: #EAE6DC;
   --white: #FFFFFF;
@@ -33,6 +31,7 @@
   --sans: 'DM Sans', system-ui, sans-serif;
   --radius: 10px;
   --radius-sm: 6px;
+  --nav-h: 58px;
 }
 
 html { scroll-behavior: smooth; }
@@ -46,38 +45,36 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* NAV */
 nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(245, 241, 232, 0.92);
+  background: rgba(245, 241, 232, 0.94);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-light);
-  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  padding: 0 clamp(1.25rem, 5vw, 3.5rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 62px;
+  height: var(--nav-h);
 }
 
 .wordmark {
   font-family: var(--serif);
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   color: var(--ink);
   letter-spacing: -0.01em;
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
 }
 
 .wordmark-dot {
-  width: 7px;
-  height: 7px;
+  width: 7px; height: 7px;
   border-radius: 50%;
   background: var(--green);
-  display: inline-block;
   flex-shrink: 0;
 }
 
@@ -85,7 +82,7 @@ nav {
   background: var(--green);
   color: var(--white);
   border: none;
-  padding: 8px 20px;
+  padding: 9px 18px;
   border-radius: var(--radius-sm);
   font-family: var(--sans);
   font-size: 0.85rem;
@@ -93,165 +90,257 @@ nav {
   cursor: pointer;
   text-decoration: none;
   transition: background 0.15s, transform 0.1s;
+  white-space: nowrap;
 }
 .nav-cta:hover { background: var(--green-mid); }
-.nav-cta:active { transform: scale(0.98); }
+.nav-cta:active { transform: scale(0.97); }
 
-/* HERO */
+/* HERO — fills viewport, shows scroll cue peeking below */
 .hero {
-  padding: clamp(5rem, 12vw, 9rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 8vw, 7rem);
+  min-height: calc(100svh - var(--nav-h));
+  display: flex;
+  flex-direction: column;
+  padding: clamp(2.5rem, 6vw, 5rem) clamp(1.25rem, 5vw, 3.5rem) 0;
   max-width: 1100px;
   margin: 0 auto;
+  width: 100%;
+}
+
+.hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 1.5rem;
 }
 
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   background: var(--green-light);
   color: var(--green);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  padding: 5px 12px;
+  padding: 5px 11px;
   border-radius: 20px;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.4rem;
+  width: fit-content;
   opacity: 0;
-  animation: fadeUp 0.6s 0.1s forwards;
+  animation: fadeUp 0.55s 0.05s forwards;
 }
 
-.hero-eyebrow-dot {
-  width: 5px;
-  height: 5px;
-  background: var(--green);
-  border-radius: 50%;
-}
+.hero-eyebrow-dot { width: 5px; height: 5px; background: var(--green); border-radius: 50%; }
 
 h1 {
   font-family: var(--serif);
-  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-size: clamp(2.4rem, 6.5vw, 5rem);
   line-height: 1.06;
   letter-spacing: -0.025em;
   color: var(--ink);
-  max-width: 800px;
-  margin-bottom: 1.5rem;
+  max-width: 750px;
+  margin-bottom: 1.1rem;
   opacity: 0;
-  animation: fadeUp 0.7s 0.2s forwards;
+  animation: fadeUp 0.65s 0.15s forwards;
 }
 
-h1 em {
-  font-style: italic;
-  color: var(--green);
-}
+h1 em { font-style: italic; color: var(--green); }
 
 .hero-sub {
-  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  font-size: clamp(1rem, 2vw, 1.15rem);
   color: var(--ink-muted);
-  max-width: 560px;
-  margin-bottom: 2.5rem;
+  max-width: 520px;
+  margin-bottom: 2rem;
   font-weight: 300;
   line-height: 1.65;
   opacity: 0;
-  animation: fadeUp 0.7s 0.35s forwards;
+  animation: fadeUp 0.65s 0.28s forwards;
 }
 
-.hero-form {
-  display: flex;
-  gap: 10px;
-  max-width: 480px;
+.signup-box {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.4rem;
+  max-width: 520px;
   opacity: 0;
-  animation: fadeUp 0.7s 0.5s forwards;
-  flex-wrap: wrap;
+  animation: fadeUp 0.65s 0.4s forwards;
 }
 
-.hero-form input[type="email"] {
-  flex: 1;
-  min-width: 220px;
-  padding: 13px 16px;
+.signup-box > p {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  margin-bottom: 0.9rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.form-field { display: flex; flex-direction: column; gap: 4px; }
+
+.form-field label {
+  font-size: 0.67rem;
+  font-weight: 500;
+  color: var(--ink-faint);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.form-field input,
+.form-field select {
+  padding: 10px 12px;
   border: 1.5px solid var(--border);
   border-radius: var(--radius-sm);
   font-family: var(--sans);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   background: var(--white);
   color: var(--ink);
   outline: none;
   transition: border-color 0.15s;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
 }
-.hero-form input[type="email"]:focus { border-color: var(--green); }
-.hero-form input[type="email"]::placeholder { color: var(--ink-faint); }
 
-.hero-form button {
+.form-field input:focus,
+.form-field select:focus { border-color: var(--green); }
+.form-field input::placeholder { color: var(--ink-faint); }
+.form-field select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A8A49C' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+.form-field select option[value=""] { color: var(--ink-faint); }
+
+.signup-btn {
+  width: 100%;
   background: var(--green);
   color: var(--white);
   border: none;
-  padding: 13px 24px;
+  padding: 12px 20px;
   border-radius: var(--radius-sm);
   font-family: var(--sans);
   font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
-  white-space: nowrap;
   transition: background 0.15s, transform 0.1s;
+  margin-top: 10px;
 }
-.hero-form button:hover { background: var(--green-mid); }
-.hero-form button:active { transform: scale(0.98); }
+.signup-btn:hover { background: var(--green-mid); }
+.signup-btn:active { transform: scale(0.98); }
+.signup-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
-.hero-note {
-  margin-top: 0.85rem;
-  font-size: 0.8rem;
+.form-note {
+  font-size: 0.72rem;
   color: var(--ink-faint);
-  opacity: 0;
-  animation: fadeUp 0.7s 0.65s forwards;
+  margin-top: 8px;
+  text-align: center;
 }
 
 .success-msg {
   display: none;
   background: var(--green-light);
   color: var(--green);
-  padding: 13px 18px;
+  padding: 14px 16px;
   border-radius: var(--radius-sm);
   font-size: 0.95rem;
   font-weight: 500;
-  max-width: 480px;
 }
 
-/* DIGEST PREVIEW */
-.preview-section {
-  background: var(--cream-dark);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+/* Scroll cue */
+.scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 1.25rem 0 1.75rem;
+  opacity: 0;
+  animation: fadeUp 0.65s 0.9s forwards;
 }
 
-.preview-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.section-label {
-  font-size: 0.75rem;
+.scroll-cue span {
+  font-size: 0.68rem;
   font-weight: 500;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--ink-faint);
-  margin-bottom: 0.75rem;
+}
+
+.scroll-arrow {
+  width: 18px; height: 18px;
+  color: var(--ink-faint);
+  animation: bounce 1.8s ease-in-out 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+/* Proof bar */
+.proof-bar {
+  background: var(--ink);
+  padding: 13px clamp(1.25rem, 5vw, 3.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  flex-wrap: wrap;
+}
+
+.proof-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.proof-dot { width: 4px; height: 4px; background: var(--green); border-radius: 50%; flex-shrink: 0; }
+
+/* Preview section */
+.preview-section {
+  background: var(--cream-dark);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1.25rem, 5vw, 3.5rem);
+}
+
+.preview-inner { max-width: 1100px; margin: 0 auto; }
+
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.6rem;
 }
 
 .preview-heading {
   font-family: var(--serif);
-  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
   letter-spacing: -0.02em;
-  margin-bottom: 0.75rem;
-  max-width: 560px;
+  margin-bottom: 0.6rem;
+  line-height: 1.2;
 }
 
 .preview-sub {
   color: var(--ink-muted);
   font-weight: 300;
-  margin-bottom: 2.75rem;
-  max-width: 460px;
-  font-size: 1.0rem;
+  margin-bottom: 2.5rem;
+  max-width: 440px;
+  font-size: 0.98rem;
 }
 
 .digest-card {
@@ -259,574 +348,211 @@ h1 em {
   border: 1px solid var(--border);
   border-radius: 14px;
   overflow: hidden;
-  max-width: 640px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04);
+  max-width: 620px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
 }
 
 .digest-header {
   background: var(--green);
-  padding: 18px 24px 16px;
+  padding: 16px 22px 14px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  gap: 12px;
 }
 
-.digest-title-group { }
+.digest-from { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 2px; }
+.digest-header-title { font-family: var(--serif); color: var(--white); font-size: 1.08rem; }
+.digest-date { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-align: right; white-space: nowrap; flex-shrink: 0; }
+.digest-specialty { background: rgba(255,255,255,0.14); color: var(--white); font-size: 0.66rem; font-weight: 500; padding: 3px 8px; border-radius: 20px; letter-spacing: 0.04em; margin-top: 5px; display: inline-block; }
 
-.digest-from {
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.65);
-  margin-bottom: 3px;
-}
-
-.digest-header-title {
-  font-family: var(--serif);
-  color: var(--white);
-  font-size: 1.15rem;
-  letter-spacing: -0.01em;
-}
-
-.digest-date {
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.55);
-  text-align: right;
-}
-
-.digest-specialty {
-  background: rgba(255,255,255,0.15);
-  color: var(--white);
-  font-size: 0.7rem;
-  font-weight: 500;
-  padding: 3px 9px;
-  border-radius: 20px;
-  letter-spacing: 0.04em;
-  margin-top: 4px;
-  display: inline-block;
-}
-
-.paper-card {
-  padding: 22px 24px 18px;
-  border-bottom: 1px solid var(--border-light);
-}
-
+.paper-card { padding: 20px 22px 16px; border-bottom: 1px solid var(--border-light); }
 .paper-card:last-of-type { border-bottom: none; }
 
-.paper-meta {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 10px;
-}
+.paper-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; flex-wrap: wrap; }
 
-.journal-badge {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 3px 9px;
-  border-radius: 4px;
-}
-
+.journal-badge { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; }
 .badge-nejm { background: #FDECEA; color: #B01C1C; }
 .badge-lancet { background: #E8EEF8; color: #1A3A7A; }
-.badge-jama { background: #F0EEF8; color: #3A1A7A; }
 
-.paper-type {
-  font-size: 0.7rem;
-  color: var(--ink-faint);
-  font-weight: 400;
-}
+.paper-type { font-size: 0.7rem; color: var(--ink-faint); }
+.paper-title { font-family: var(--serif); font-size: 0.98rem; line-height: 1.35; margin-bottom: 12px; color: var(--ink); }
 
-.paper-title {
-  font-family: var(--serif);
-  font-size: 1.0rem;
-  line-height: 1.35;
-  margin-bottom: 14px;
-  color: var(--ink);
-  letter-spacing: -0.01em;
-}
-
-.summary-rows { display: flex; flex-direction: column; gap: 0; }
+.summary-rows { display: flex; flex-direction: column; }
 
 .summary-row {
   display: grid;
-  grid-template-columns: 110px 1fr;
+  grid-template-columns: 100px 1fr;
   gap: 10px;
   padding: 7px 0;
   border-top: 1px solid var(--border-light);
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   line-height: 1.45;
 }
 
-.row-label {
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  padding-top: 1px;
-}
-
+.row-label { font-size: 0.63rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); padding-top: 1px; }
 .row-value { color: var(--ink); }
-
 .row-practice .row-label { color: var(--green); }
-.row-practice .row-value { color: var(--ink); font-weight: 500; }
+.row-practice .row-value { font-weight: 500; }
 
-.paper-links {
-  display: flex;
-  gap: 8px;
-  margin-top: 14px;
-  flex-wrap: wrap;
-}
-
-.paper-link {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--green);
-  text-decoration: none;
-  padding: 5px 11px;
-  border: 1px solid var(--green-light);
-  border-radius: 4px;
-  background: var(--green-pale);
-  transition: background 0.12s;
-}
+.paper-links { display: flex; gap: 7px; margin-top: 12px; flex-wrap: wrap; }
+.paper-link { font-size: 0.73rem; font-weight: 500; color: var(--green); text-decoration: none; padding: 5px 10px; border: 1px solid var(--green-light); border-radius: 4px; background: var(--green-pale); transition: background 0.12s; }
 .paper-link:hover { background: var(--green-light); }
 
-.digest-footer-bar {
-  background: var(--cream);
-  padding: 12px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid var(--border-light);
-}
+.digest-footer-bar { background: var(--cream); padding: 10px 22px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border-light); flex-wrap: wrap; gap: 8px; }
+.digest-footer-text { font-size: 0.72rem; color: var(--ink-faint); }
+.digest-footer-links { display: flex; gap: 14px; }
+.digest-footer-links a { font-size: 0.7rem; color: var(--ink-faint); text-decoration: none; }
 
-.digest-footer-text {
-  font-size: 0.75rem;
-  color: var(--ink-faint);
-}
+/* Format section */
+.format-section { padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1.25rem, 5vw, 3.5rem); max-width: 1100px; margin: 0 auto; }
 
-.digest-footer-links {
-  display: flex;
-  gap: 14px;
-}
+.format-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 2.2rem; }
 
-.digest-footer-links a {
-  font-size: 0.72rem;
-  color: var(--ink-faint);
-  text-decoration: none;
-}
-.digest-footer-links a:hover { color: var(--ink-muted); }
+.format-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 22px; transition: transform 0.15s, box-shadow 0.15s; }
+.format-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
 
-/* FORMAT SECTION */
-.format-section {
-  padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
-  max-width: 1100px;
-  margin: 0 auto;
-}
+.format-icon { width: 38px; height: 38px; border-radius: 9px; background: var(--green-light); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+.format-icon svg { width: 18px; height: 18px; }
+.format-name { font-family: var(--serif); font-size: 1.1rem; margin-bottom: 5px; }
+.format-desc { font-size: 0.86rem; color: var(--ink-muted); line-height: 1.55; font-weight: 300; }
+.format-detail { margin-top: 12px; font-size: 0.75rem; color: var(--green); font-weight: 500; }
 
-.format-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
-  margin-top: 2.5rem;
-}
+/* Pricing */
+.pricing-section { background: var(--ink); padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1.25rem, 5vw, 3.5rem); }
+.pricing-inner { max-width: 1100px; margin: 0 auto; }
+.pricing-section .section-label { color: rgba(255,255,255,0.3); }
+.pricing-heading { font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2.2rem); color: var(--white); letter-spacing: -0.02em; margin-bottom: 0.6rem; }
+.pricing-sub { color: rgba(255,255,255,0.45); font-weight: 300; margin-bottom: 2.5rem; max-width: 420px; font-size: 0.98rem; }
 
-.format-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 28px 26px;
-  transition: transform 0.15s, box-shadow 0.15s;
-}
-.format-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-}
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 
-.format-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: var(--green-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
-}
+.pricing-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: var(--radius); padding: 24px; }
+.pricing-card.featured { background: var(--green); border-color: var(--green-mid); }
 
-.format-icon svg { width: 20px; height: 20px; }
-
-.format-name {
-  font-family: var(--serif);
-  font-size: 1.15rem;
-  margin-bottom: 6px;
-  letter-spacing: -0.01em;
-}
-
-.format-desc {
-  font-size: 0.88rem;
-  color: var(--ink-muted);
-  line-height: 1.55;
-  font-weight: 300;
-}
-
-.format-detail {
-  margin-top: 14px;
-  font-size: 0.78rem;
-  color: var(--green);
-  font-weight: 500;
-}
-
-/* PRICING */
-.pricing-section {
-  background: var(--ink);
-  padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
-}
-
-.pricing-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.pricing-section .section-label { color: rgba(255,255,255,0.35); }
-
-.pricing-heading {
-  font-family: var(--serif);
-  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-  color: var(--white);
-  letter-spacing: -0.02em;
-  margin-bottom: 0.75rem;
-}
-
-.pricing-sub {
-  color: rgba(255,255,255,0.5);
-  font-weight: 300;
-  margin-bottom: 3rem;
-  max-width: 460px;
-}
-
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 14px;
-}
-
-.pricing-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: var(--radius);
-  padding: 26px;
-}
-
-.pricing-card.featured {
-  background: var(--green);
-  border-color: var(--green-mid);
-}
-
-.price-label {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-  margin-bottom: 8px;
-}
-
+.price-label { font-size: 0.67rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 7px; }
 .pricing-card.featured .price-label { color: rgba(255,255,255,0.7); }
-
-.price-name {
-  font-family: var(--serif);
-  font-size: 1.3rem;
-  color: var(--white);
-  margin-bottom: 6px;
-  letter-spacing: -0.01em;
-}
-
-.price-amount {
-  font-size: 2rem;
-  font-weight: 300;
-  color: var(--white);
-  line-height: 1;
-  margin-bottom: 4px;
-}
-
-.price-amount sup {
-  font-size: 1rem;
-  font-weight: 400;
-  vertical-align: super;
-}
-
-.price-cadence {
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.45);
-  margin-bottom: 20px;
-}
-
+.price-name { font-family: var(--serif); font-size: 1.25rem; color: var(--white); margin-bottom: 5px; }
+.price-amount { font-size: 2rem; font-weight: 300; color: var(--white); line-height: 1; margin-bottom: 3px; }
+.price-amount sup { font-size: 0.95rem; font-weight: 400; vertical-align: super; }
+.price-cadence { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-bottom: 18px; }
 .pricing-card.featured .price-cadence { color: rgba(255,255,255,0.65); }
 
-.price-features {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-}
-
-.price-features li {
-  font-size: 0.83rem;
-  color: rgba(255,255,255,0.7);
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  line-height: 1.4;
-}
-
+.price-features { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.price-features li { font-size: 0.82rem; color: rgba(255,255,255,0.65); display: flex; align-items: flex-start; gap: 7px; line-height: 1.4; }
 .pricing-card.featured .price-features li { color: rgba(255,255,255,0.9); }
-
-.price-check {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-  margin-top: 1px;
-  color: var(--green);
-}
-
+.price-check { width: 13px; height: 13px; flex-shrink: 0; margin-top: 2px; color: var(--green); }
 .pricing-card.featured .price-check { color: rgba(255,255,255,0.9); }
 
-/* FOR WHOM */
-.whom-section {
-  padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.whom-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: center;
-  margin-top: 2.5rem;
-}
-
-@media (max-width: 700px) { .whom-grid { grid-template-columns: 1fr; } }
-
-.whom-heading {
-  font-family: var(--serif);
-  font-size: clamp(1.6rem, 3.5vw, 2.3rem);
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-}
-
+/* Who it's for */
+.whom-section { padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1.25rem, 5vw, 3.5rem); max-width: 1100px; margin: 0 auto; }
+.whom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-top: 2.2rem; }
+.whom-heading { font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2.1rem); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.9rem; }
 .whom-heading em { font-style: italic; color: var(--green); }
+.whom-body { color: var(--ink-muted); font-weight: 300; line-height: 1.7; margin-bottom: 1.4rem; font-size: 0.98rem; }
+.whom-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.whom-list li { display: flex; align-items: flex-start; gap: 9px; font-size: 0.88rem; color: var(--ink-muted); line-height: 1.45; }
+.whom-check { width: 18px; height: 18px; flex-shrink: 0; background: var(--green-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+.whom-check svg { width: 10px; height: 10px; color: var(--green); }
 
-.whom-body {
-  color: var(--ink-muted);
-  font-weight: 300;
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-  font-size: 1.0rem;
-}
-
-.whom-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.whom-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 0.9rem;
-  color: var(--ink-muted);
-  line-height: 1.45;
-}
-
-.whom-check {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  background: var(--green-light);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1px;
-}
-
-.whom-check svg {
-  width: 10px;
-  height: 10px;
-  color: var(--green);
-}
-
-.quote-block {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 32px;
-}
-
-.quote-text {
-  font-family: var(--serif);
-  font-size: 1.15rem;
-  font-style: italic;
-  line-height: 1.55;
-  color: var(--ink);
-  margin-bottom: 1rem;
-  letter-spacing: -0.01em;
-}
-
-.quote-attr { font-size: 0.8rem; color: var(--ink-faint); }
+.quote-block { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
+.quote-text { font-family: var(--serif); font-size: 1.05rem; font-style: italic; line-height: 1.55; color: var(--ink); margin-bottom: 0.9rem; }
+.quote-attr { font-size: 0.78rem; color: var(--ink-faint); }
 .quote-attr strong { color: var(--ink-muted); font-weight: 500; }
 
-/* CTA SECTION */
-.cta-section {
-  background: var(--green);
-  padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
-  text-align: center;
-}
+/* Bottom CTA */
+.cta-section { background: var(--green); padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1.25rem, 5vw, 3.5rem); text-align: center; }
+.cta-heading { font-family: var(--serif); font-size: clamp(1.8rem, 4.5vw, 3rem); color: var(--white); letter-spacing: -0.025em; margin-bottom: 0.8rem; line-height: 1.1; }
+.cta-sub { color: rgba(255,255,255,0.6); font-weight: 300; margin-bottom: 2.5rem; font-size: 1rem; }
 
-.cta-heading {
-  font-family: var(--serif);
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  color: var(--white);
-  letter-spacing: -0.025em;
-  margin-bottom: 1rem;
-  line-height: 1.1;
-}
+.cta-box { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 1.4rem; max-width: 480px; margin: 0 auto; text-align: left; }
+.cta-box > p { font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.6); margin-bottom: 0.85rem; }
 
-.cta-sub {
-  color: rgba(255,255,255,0.65);
-  font-weight: 300;
-  margin-bottom: 2.5rem;
-  font-size: 1.05rem;
-}
+.cta-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+.cta-field { display: flex; flex-direction: column; gap: 4px; }
+.cta-field label { font-size: 0.67rem; font-weight: 500; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; text-transform: uppercase; }
 
-.cta-form {
-  display: flex;
-  gap: 10px;
-  max-width: 440px;
-  margin: 0 auto;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.cta-form input[type="email"] {
-  flex: 1;
-  min-width: 200px;
-  padding: 13px 16px;
-  border: 1.5px solid rgba(255,255,255,0.3);
+.cta-field input,
+.cta-field select {
+  padding: 10px 12px;
+  border: 1.5px solid rgba(255,255,255,0.25);
   border-radius: var(--radius-sm);
   font-family: var(--sans);
-  font-size: 0.95rem;
-  background: rgba(255,255,255,0.12);
+  font-size: 0.9rem;
+  background: rgba(255,255,255,0.1);
   color: var(--white);
   outline: none;
   transition: border-color 0.15s;
-}
-.cta-form input::placeholder { color: rgba(255,255,255,0.45); }
-.cta-form input:focus { border-color: rgba(255,255,255,0.7); }
-
-.cta-form button {
-  background: var(--white);
-  color: var(--green);
-  border: none;
-  padding: 13px 24px;
-  border-radius: var(--radius-sm);
-  font-family: var(--sans);
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: opacity 0.15s, transform 0.1s;
-}
-.cta-form button:hover { opacity: 0.92; }
-.cta-form button:active { transform: scale(0.98); }
-
-.cta-note {
-  color: rgba(255,255,255,0.45);
-  font-size: 0.78rem;
-  margin-top: 1rem;
-}
-
-.cta-success {
-  display: none;
-  background: rgba(255,255,255,0.15);
-  color: var(--white);
-  padding: 13px 22px;
-  border-radius: var(--radius-sm);
-  font-size: 0.95rem;
-  font-weight: 500;
-  max-width: 440px;
-  margin: 0 auto;
-}
-
-/* FOOTER */
-footer {
-  padding: 2.5rem clamp(1.5rem, 5vw, 4rem);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid var(--border);
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.footer-mark {
-  font-family: var(--serif);
-  font-size: 1.05rem;
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  text-decoration: none;
-}
-
-.footer-links {
-  display: flex;
-  gap: 24px;
-}
-
-.footer-links a {
-  font-size: 0.8rem;
-  color: var(--ink-faint);
-  text-decoration: none;
-  transition: color 0.12s;
-}
-.footer-links a:hover { color: var(--ink-muted); }
-
-.footer-copy {
-  font-size: 0.78rem;
-  color: var(--ink-faint);
   width: 100%;
-  margin-top: 4px;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
-/* ANIMATIONS */
+.cta-field input::placeholder { color: rgba(255,255,255,0.4); }
+.cta-field input:focus, .cta-field select:focus { border-color: rgba(255,255,255,0.6); }
+.cta-field select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.5)' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+.cta-field select option { color: var(--ink); background: var(--white); }
+
+.cta-btn { width: 100%; background: var(--white); color: var(--green); border: none; padding: 12px 20px; border-radius: var(--radius-sm); font-family: var(--sans); font-size: 0.95rem; font-weight: 600; cursor: pointer; margin-top: 10px; transition: opacity 0.15s, transform 0.1s; }
+.cta-btn:hover { opacity: 0.93; }
+.cta-btn:active { transform: scale(0.98); }
+.cta-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.cta-note { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 10px; text-align: center; }
+
+.cta-success { display: none; background: rgba(255,255,255,0.15); color: var(--white); padding: 14px 18px; border-radius: var(--radius-sm); font-size: 0.95rem; font-weight: 500; }
+
+/* Footer */
+footer { padding: 2rem clamp(1.25rem, 5vw, 3.5rem); display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 14px; }
+.footer-mark { font-family: var(--serif); font-size: 1rem; color: var(--ink); display: flex; align-items: center; gap: 7px; text-decoration: none; }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { font-size: 0.78rem; color: var(--ink-faint); text-decoration: none; }
+.footer-links a:hover { color: var(--ink-muted); }
+.footer-copy { font-size: 0.75rem; color: var(--ink-faint); width: 100%; }
+
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(18px); }
+  from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* RESPONSIVE */
-@media (max-width: 640px) {
-  .summary-row { grid-template-columns: 1fr; gap: 2px; }
-  .row-label { font-size: 0.63rem; }
-  .digest-footer-links { display: none; }
-  footer { flex-direction: column; align-items: flex-start; }
+/* Responsive */
+@media (max-width: 860px) {
+  .format-grid { grid-template-columns: 1fr 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; gap: 10px; }
+  .whom-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+
+@media (max-width: 600px) {
+  :root { --nav-h: 54px; }
+  h1 { font-size: clamp(2.1rem, 9vw, 2.6rem); }
+  .hero { padding-top: 2rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .signup-box { padding: 1.1rem; }
   .format-grid { grid-template-columns: 1fr; }
-  .pricing-grid { grid-template-columns: 1fr; }
+  .summary-row { grid-template-columns: 1fr; gap: 2px; }
+  .row-label { font-size: 0.6rem; }
+  .digest-footer-links { display: none; }
+  .cta-form-row { grid-template-columns: 1fr; }
+  .cta-box { padding: 1.1rem; }
+  .proof-bar { gap: 0.9rem; padding: 12px 1.25rem; }
+  .proof-item { font-size: 0.72rem; }
+  footer { flex-direction: column; align-items: flex-start; }
+  .scroll-cue { padding: 1rem 0 1.4rem; }
+}
+
+@media (max-width: 380px) {
+  h1 { font-size: 2rem; }
+  .hero-sub { font-size: 0.95rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#" class="wordmark">
     <span class="wordmark-dot"></span>
@@ -835,65 +561,125 @@ footer {
   <a href="#signup" class="nav-cta">Join the waitlist</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow">
-    <span class="hero-eyebrow-dot"></span>
-    Free for physicians
-  </div>
-  <h1>Stay <em>informed.</em><br>Practice better.</h1>
-  <p class="hero-sub">The five most important papers in your specialty, every week. AI-curated from 35 million publications, summarized for the clinician at the bedside — not the researcher in the lab.</p>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-dot"></span>
+      Free for physicians &middot; Every specialty
+    </div>
 
-  <form class="hero-form" id="hero-form">
-    <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
-    <input type="hidden" name="source" value="hero">
-    <button type="submit">Join the waitlist</button>
-  </form>
-  <div class="success-msg" id="hero-success">You're on the list — we'll be in touch soon.</div>
-  <p class="hero-note">Free forever. No credit card. Unsubscribe anytime.</p>
+    <h1>Stay <em>informed.</em><br>Practice better.</h1>
+
+    <p class="hero-sub">The five most important papers in your specialty, every week. AI-curated from 35 million publications and summarized for the clinician at the bedside — not the researcher in the lab.</p>
+
+    <div class="signup-box" id="hero-box">
+      <p>Join the waitlist — we'll notify you when your specialty launches.</p>
+      <form id="hero-form">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="h-email">Email</label>
+            <input type="email" id="h-email" name="email" placeholder="you@hospital.edu" required autocomplete="email">
+          </div>
+          <div class="form-field">
+            <label for="h-specialty">Your specialty</label>
+            <select id="h-specialty" name="specialty" required>
+              <option value="" disabled selected>Select specialty</option>
+              <option>Allergy &amp; Immunology</option>
+              <option>Anesthesiology</option>
+              <option>Cardiology</option>
+              <option>Critical Care</option>
+              <option>Dermatology</option>
+              <option>Emergency Medicine</option>
+              <option>Endocrinology</option>
+              <option>Family Medicine</option>
+              <option>Gastroenterology</option>
+              <option>Geriatrics</option>
+              <option>Hematology / Oncology</option>
+              <option>Hospital Medicine</option>
+              <option>Infectious Disease</option>
+              <option>Internal Medicine</option>
+              <option>Nephrology</option>
+              <option>Neurology</option>
+              <option>OB/GYN</option>
+              <option>Ophthalmology</option>
+              <option>Orthopedics</option>
+              <option>Otolaryngology</option>
+              <option>Palliative Care</option>
+              <option>Pediatrics</option>
+              <option>Physical Medicine &amp; Rehab</option>
+              <option>Psychiatry</option>
+              <option>Pulmonology</option>
+              <option>Radiology</option>
+              <option>Rheumatology</option>
+              <option>Surgery — General</option>
+              <option>Surgery — Cardiothoracic</option>
+              <option>Surgery — Vascular</option>
+              <option>Urology</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <input type="hidden" name="source" value="hero">
+        <button type="submit" class="signup-btn">Join the waitlist &rarr;</button>
+      </form>
+      <div class="success-msg" id="hero-success">You're on the list. We'll reach out when your specialty launches.</div>
+      <p class="form-note">Free forever. No credit card. Unsubscribe anytime.</p>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <span>See how it works</span>
+    <svg class="scroll-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 4v12M4 10l6 6 6-6"/>
+    </svg>
+  </div>
 </section>
 
-<!-- DIGEST PREVIEW -->
+<div class="proof-bar">
+  <div class="proof-item"><span class="proof-dot"></span>35 million papers indexed</div>
+  <div class="proof-item"><span class="proof-dot"></span>5 curated papers per week</div>
+  <div class="proof-item"><span class="proof-dot"></span>Every specialty covered</div>
+  <div class="proof-item"><span class="proof-dot"></span>Free forever at the core</div>
+</div>
+
 <section class="preview-section">
   <div class="preview-inner">
     <p class="section-label">What you receive</p>
-    <h2 class="preview-heading">Every Thursday morning, this arrives in your inbox.</h2>
-    <p class="preview-sub">Structured for the clinician with 4 minutes between patients. Not the researcher with 4 hours.</p>
+    <h2 class="preview-heading">Structured for 4 minutes between patients.<br>Not 4 hours in the library.</h2>
+    <p class="preview-sub">Every summary follows the same format — clinically relevant, limitation-aware, and practice-focused.</p>
 
     <div class="digest-card">
       <div class="digest-header">
-        <div class="digest-title-group">
+        <div>
           <div class="digest-from">MDInformed</div>
-          <div class="digest-header-title">This Week in Infectious Disease</div>
-          <span class="digest-specialty">Infectious Disease · Week of Apr 7, 2026</span>
+          <div class="digest-header-title">This Week in Cardiology</div>
+          <span class="digest-specialty">Heart Failure &middot; Week of Apr 7, 2026</span>
         </div>
-        <div class="digest-date">
-          Paper 1 of 5
-        </div>
+        <div class="digest-date">Paper 1 of 5</div>
       </div>
 
       <div class="paper-card">
         <div class="paper-meta">
           <span class="journal-badge badge-nejm">NEJM</span>
-          <span class="paper-type">Randomized Controlled Trial · 4,847 patients</span>
+          <span class="paper-type">Randomized Controlled Trial &middot; 5,221 patients</span>
         </div>
-        <div class="paper-title">Ceftazidime-avibactam versus meropenem for carbapenem-resistant Enterobacterales bloodstream infections: a multicenter RCT</div>
+        <div class="paper-title">Empagliflozin versus placebo in heart failure with mildly reduced ejection fraction: a multinational RCT</div>
         <div class="summary-rows">
           <div class="summary-row">
             <div class="row-label">Why it matters</div>
-            <div class="row-value">CRE bloodstream infections carry 40–70% mortality. First large RCT to compare new beta-lactam/beta-lactamase inhibitor combinations head-to-head.</div>
+            <div class="row-value">HFmrEF remains undertreated — this is the first large RCT to show benefit of SGLT2i specifically in this ejection fraction range.</div>
           </div>
           <div class="summary-row">
             <div class="row-label">Key finding</div>
-            <div class="row-value">Ceftazidime-avibactam achieved 28-day all-cause mortality of 24% vs. 34% for meropenem (OR 0.61, 95% CI 0.48–0.78). NNT of 10.</div>
+            <div class="row-value">Empagliflozin reduced CV death or worsening HF by 21% (HR 0.79, 95% CI 0.69–0.90). NNT of 18 over 26 months.</div>
           </div>
           <div class="summary-row">
             <div class="row-label">Limitation</div>
-            <div class="row-value">Open-label design; 78% of patients had KPC-producing isolates, limiting generalizability to other resistance mechanisms (OXA, NDM).</div>
+            <div class="row-value">Open-label design; 68% male, predominantly European and North American cohort. Generalizability to broader populations unclear.</div>
           </div>
           <div class="summary-row row-practice">
             <div class="row-label">For your practice</div>
-            <div class="row-value">Positions ceftazidime-avibactam as first-line for KPC-CRE bacteremia when susceptibility is confirmed — if it's available at your institution.</div>
+            <div class="row-value">Supports adding empagliflozin to guideline-directed therapy for HFmrEF patients — particularly those with comorbid diabetes or CKD.</div>
           </div>
         </div>
         <div class="paper-links">
@@ -904,7 +690,7 @@ footer {
       </div>
 
       <div class="digest-footer-bar">
-        <span class="digest-footer-text">5 papers this week · 3 min read each</span>
+        <span class="digest-footer-text">5 papers this week &middot; ~3 min read each</span>
         <div class="digest-footer-links">
           <a href="#">Preferences</a>
           <a href="#">Unsubscribe</a>
@@ -914,11 +700,10 @@ footer {
   </div>
 </section>
 
-<!-- FORMAT OPTIONS -->
 <section class="format-section">
   <p class="section-label">Delivered how you want it</p>
   <h2 class="preview-heading">Your schedule, your format.</h2>
-  <p class="preview-sub">Set your preferences once. MDInformed adapts to when and how you consume knowledge.</p>
+  <p class="preview-sub">Set preferences once. MDInformed adapts to when and how you consume.</p>
 
   <div class="format-grid">
     <div class="format-card">
@@ -929,20 +714,19 @@ footer {
         </svg>
       </div>
       <div class="format-name">Weekly digest</div>
-      <div class="format-desc">Five papers, five summaries, Thursday morning. Structured for a 15-minute read with your coffee before rounds.</div>
-      <div class="format-detail">Email · Free forever</div>
+      <div class="format-desc">Five papers, five summaries, Thursday morning. Structured for a 15-minute read before rounds.</div>
+      <div class="format-detail">Email &middot; Free forever</div>
     </div>
     <div class="format-card">
       <div class="format-icon">
         <svg viewBox="0 0 20 20" fill="none" stroke="#1A5C3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="5" y="2" width="10" height="16" rx="2"/>
-          <path d="M8 18h4"/>
-          <circle cx="10" cy="10" r="1.5" fill="#1A5C3A"/>
+          <circle cx="10" cy="11" r="1.5" fill="#1A5C3A"/>
         </svg>
       </div>
       <div class="format-name">SMS highlight</div>
-      <div class="format-desc">One finding. One sentence. The single most important paper from the week, delivered as a text between patients.</div>
-      <div class="format-detail">Text message · Free forever</div>
+      <div class="format-desc">One finding. One sentence. The most important paper from the week, delivered between patients.</div>
+      <div class="format-detail">Text message &middot; Free forever</div>
     </div>
     <div class="format-card">
       <div class="format-icon">
@@ -952,13 +736,12 @@ footer {
         </svg>
       </div>
       <div class="format-name">Podcast</div>
-      <div class="format-desc">Five minutes. Five papers. Every week. Subscribe in Apple Podcasts or Spotify and listen on your commute.</div>
-      <div class="format-detail">Audio · Free forever</div>
+      <div class="format-desc">Five minutes. Five papers. Subscribe in Apple Podcasts or Spotify — listen on your commute.</div>
+      <div class="format-detail">Audio &middot; Free forever</div>
     </div>
   </div>
 </section>
 
-<!-- PRICING -->
 <section class="pricing-section">
   <div class="pricing-inner">
     <p class="section-label">Plans</p>
@@ -972,22 +755,10 @@ footer {
         <div class="price-amount">$0</div>
         <div class="price-cadence">Always free</div>
         <ul class="price-features">
-          <li>
-            <svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>
-            Weekly digest, 5 papers
-          </li>
-          <li>
-            <svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>
-            Email, SMS, and podcast delivery
-          </li>
-          <li>
-            <svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>
-            Save articles to your library
-          </li>
-          <li>
-            <svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>
-            Specialty and subspecialty filter
-          </li>
+          <li><svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>Weekly digest, 5 papers</li>
+          <li><svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>Email, SMS, and podcast delivery</li>
+          <li><svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>Save articles to your library</li>
+          <li><svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>Specialty and subspecialty filter</li>
         </ul>
       </div>
 
@@ -997,26 +768,11 @@ footer {
         <div class="price-amount"><sup>$</sup>49</div>
         <div class="price-cadence">per month</div>
         <ul class="price-features">
-          <li>
-            <svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>
-            Everything in Free
-          </li>
-          <li>
-            <svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>
-            0.25 CME credits per digest
-          </li>
-          <li>
-            <svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>
-            ACCME-accredited assessments
-          </li>
-          <li>
-            <svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>
-            CME transcript automatically maintained
-          </li>
-          <li>
-            <svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>
-            Up to 13 credits per year
-          </li>
+          <li><svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>Everything in Free</li>
+          <li><svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>0.25 CME credits per digest</li>
+          <li><svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>ACCME-accredited assessments</li>
+          <li><svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>CME transcript automatically maintained</li>
+          <li><svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>Up to 13 credits per year</li>
         </ul>
       </div>
 
@@ -1026,89 +782,97 @@ footer {
         <div class="price-amount"><sup>$</sup>99</div>
         <div class="price-cadence">per month</div>
         <ul class="price-features">
-          <li>
-            <svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>
-            Everything in CME
-          </li>
-          <li>
-            <svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>
-            Custom topic alerts
-          </li>
-          <li>
-            <svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>
-            Journal preferences and filters
-          </li>
-          <li>
-            <svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>
-            Become a curator for your specialty
-          </li>
-          <li>
-            <svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>
-            Share clinical nuggets
-          </li>
+          <li><svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>Everything in CME</li>
+          <li><svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>Custom topic alerts</li>
+          <li><svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>Journal preferences and filters</li>
+          <li><svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>Become a curator for your specialty</li>
+          <li><svg class="price-check" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg>Share clinical nuggets</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOR WHOM -->
 <section class="whom-section">
   <div class="whom-grid">
     <div>
       <p class="section-label">Who it's for</p>
-      <h2 class="whom-heading">Built for the physician who knows they should be reading <em>more.</em></h2>
+      <h2 class="whom-heading">For the physician who knows they should be reading <em>more.</em></h2>
       <p class="whom-body">You trained for a decade to interpret evidence and apply it to your patients. But somewhere between call nights and clinic schedules, keeping up with the literature became a guilt you carry rather than a practice you maintain.</p>
       <ul class="whom-list">
-        <li>
-          <span class="whom-check">
-            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 5l3 3 4-4"/></svg>
-          </span>
-          Practicing attendings in any specialty
-        </li>
-        <li>
-          <span class="whom-check">
-            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 5l3 3 4-4"/></svg>
-          </span>
-          Fellows who want to stay ahead
-        </li>
-        <li>
-          <span class="whom-check">
-            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 5l3 3 4-4"/></svg>
-          </span>
-          Department chiefs managing a team's currency
-        </li>
-        <li>
-          <span class="whom-check">
-            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 5l3 3 4-4"/></svg>
-          </span>
-          Subspecialists in fast-moving fields
-        </li>
+        <li><span class="whom-check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 5l3 3 4-4"/></svg></span>Practicing attendings in any specialty</li>
+        <li><span class="whom-check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 5l3 3 4-4"/></svg></span>Fellows who want to stay ahead of the curve</li>
+        <li><span class="whom-check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 5l3 3 4-4"/></svg></span>Department chiefs keeping their team current</li>
+        <li><span class="whom-check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 5l3 3 4-4"/></svg></span>Subspecialists in fast-moving fields</li>
       </ul>
     </div>
 
     <div class="quote-block">
       <div class="quote-text">"I used to skim journal tables of contents on Sunday nights and feel vaguely guilty about the ones I didn't read. MDInformed is what I actually wanted — the five papers that matter, already interpreted, waiting in my inbox Thursday morning."</div>
-      <div class="quote-attr"><strong>Infectious Disease Attending</strong> · Academic Medical Center · Early access pilot</div>
+      <div class="quote-attr"><strong>Attending Physician</strong> &middot; Academic Medical Center &middot; Early access pilot</div>
     </div>
   </div>
 </section>
 
-<!-- BOTTOM CTA -->
 <section class="cta-section" id="signup">
   <h2 class="cta-heading">Join the waitlist.<br>It's free.</h2>
-  <p class="cta-sub">We're launching with a small cohort of Infectious Disease physicians. Be among the first.</p>
+  <p class="cta-sub">We're launching specialty by specialty. Tell us yours and we'll notify you first.</p>
 
-  <form class="cta-form" id="cta-form">
-    <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
-    <input type="hidden" name="source" value="cta">
-    <button type="submit">Join waitlist</button>
-  </form>
-  <div class="cta-success" id="cta-success">You're in. We'll reach out soon.</div>
-  <p class="cta-note">Free forever. No credit card required.</p>
+  <div class="cta-box" id="cta-box">
+    <p>Get notified when your specialty launches</p>
+    <form id="cta-form">
+      <div class="cta-form-row">
+        <div class="cta-field">
+          <label for="c-email">Email</label>
+          <input type="email" id="c-email" name="email" placeholder="you@hospital.edu" required autocomplete="email">
+        </div>
+        <div class="cta-field">
+          <label for="c-specialty">Specialty</label>
+          <select id="c-specialty" name="specialty" required>
+            <option value="" disabled selected>Select specialty</option>
+            <option>Allergy &amp; Immunology</option>
+            <option>Anesthesiology</option>
+            <option>Cardiology</option>
+            <option>Critical Care</option>
+            <option>Dermatology</option>
+            <option>Emergency Medicine</option>
+            <option>Endocrinology</option>
+            <option>Family Medicine</option>
+            <option>Gastroenterology</option>
+            <option>Geriatrics</option>
+            <option>Hematology / Oncology</option>
+            <option>Hospital Medicine</option>
+            <option>Infectious Disease</option>
+            <option>Internal Medicine</option>
+            <option>Nephrology</option>
+            <option>Neurology</option>
+            <option>OB/GYN</option>
+            <option>Ophthalmology</option>
+            <option>Orthopedics</option>
+            <option>Otolaryngology</option>
+            <option>Palliative Care</option>
+            <option>Pediatrics</option>
+            <option>Physical Medicine &amp; Rehab</option>
+            <option>Psychiatry</option>
+            <option>Pulmonology</option>
+            <option>Radiology</option>
+            <option>Rheumatology</option>
+            <option>Surgery — General</option>
+            <option>Surgery — Cardiothoracic</option>
+            <option>Surgery — Vascular</option>
+            <option>Urology</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <input type="hidden" name="source" value="cta">
+      <button type="submit" class="cta-btn">Join the waitlist &rarr;</button>
+    </form>
+    <div class="cta-success" id="cta-success">You're in. We'll reach out when your specialty launches.</div>
+    <p class="cta-note">Free forever. No credit card required.</p>
+  </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <a href="#" class="footer-mark">
     <span class="wordmark-dot"></span>
@@ -1118,48 +882,40 @@ footer {
     <a href="mailto:hello@mdinformed.com">hello@mdinformed.com</a>
     <a href="#">Privacy</a>
   </div>
-  <p class="footer-copy">© 2026 MDInformed. Built for physicians who care about evidence.</p>
+  <p class="footer-copy">&copy; 2026 MDInformed. Built for physicians who care about evidence.</p>
 </footer>
 
 <script>
-  /* -------------------------------------------------------
-     FORM HANDLING
-     Replace YOUR_FORM_ID in both action URLs with your
-     Formspree form ID. Sign up free at formspree.io
-     Each form gets its own ID — create two forms there.
-     ------------------------------------------------------- */
+function handleForm(formId, successId, formspreeId) {
+  const form = document.getElementById(formId);
+  const success = document.getElementById(successId);
+  if (!form) return;
 
-  function handleForm(formId, successId, formspreeId) {
-    const form = document.getElementById(formId);
-    const success = document.getElementById(successId);
-    if (!form) return;
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    const origText = btn.textContent;
+    btn.textContent = 'Submitting\u2026';
+    btn.disabled = true;
 
-    form.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const email = form.querySelector('[name="email"]').value;
-      const source = form.querySelector('[name="source"]').value;
+    const data = {};
+    new FormData(form).forEach((v, k) => data[k] = v);
 
-      // If Formspree is configured, submit there
-      // Otherwise, just show success (for initial testing)
-      const formspreeUrl = 'https://formspree.io/f/' + formspreeId;
+    try {
+      await fetch('https://formspree.io/f/' + formspreeId, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+    } catch(err) {}
 
-      try {
-        if (formspreeId !== 'YOUR_FORM_ID') {
-          await fetch(formspreeUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify({ email, source })
-          });
-        }
-      } catch(err) { /* silent fail — still show success */ }
+    form.style.display = 'none';
+    success.style.display = 'block';
+  });
+}
 
-      form.style.display = 'none';
-      success.style.display = 'block';
-    });
-  }
-
-  handleForm('hero-form', 'hero-success', 'xvzvvbyq');
-  handleForm('cta-form', 'cta-success', 'xvzvvbyq');
+handleForm('hero-form', 'hero-success', 'xvzvvbyq');
+handleForm('cta-form', 'cta-success', 'xvzvvbyq');
 </script>
 
 </body>
