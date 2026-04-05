@@ -261,24 +261,26 @@ h1 em { font-style: italic; color: var(--green); }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   padding: 1.25rem 0 1.75rem;
   opacity: 0;
   animation: fadeUp 0.65s 0.9s forwards;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .scroll-cue span {
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.09em;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--green);
 }
 
 .scroll-arrow {
-  width: 18px; height: 18px;
-  color: var(--ink-faint);
-  animation: bounce 1.8s ease-in-out 1.5s infinite;
+  width: 26px; height: 26px;
+  color: var(--green);
+  animation: bounce 1.4s ease-in-out 1.2s infinite;
 }
 
 @keyframes bounce {
@@ -627,12 +629,12 @@ footer { padding: 2rem clamp(1.25rem, 5vw, 3.5rem); display: flex; align-items: 
     </div>
   </div>
 
-  <div class="scroll-cue">
+  <a href="#how-it-works" class="scroll-cue">
     <span>See how it works</span>
     <svg class="scroll-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <path d="M10 4v12M4 10l6 6 6-6"/>
     </svg>
-  </div>
+  </a>
 </section>
 
 <div class="proof-bar">
@@ -642,7 +644,7 @@ footer { padding: 2rem clamp(1.25rem, 5vw, 3.5rem); display: flex; align-items: 
   <div class="proof-item"><span class="proof-dot"></span>Free forever at the core</div>
 </div>
 
-<section class="preview-section">
+<section class="preview-section" id="how-it-works">
   <div class="preview-inner">
     <p class="section-label">What you receive</p>
     <h2 class="preview-heading">Structured for 4 minutes between patients.<br>Not 4 hours in the library.</h2>
